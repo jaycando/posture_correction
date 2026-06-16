@@ -1,0 +1,41 @@
+{
+  "name": "posture-pulse",
+  "version": "1.0.0",
+  "description": "Mac desktop app for webcam posture correction alerts.",
+  "main": "electron/main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "pack:mac": "electron-builder --mac --dir",
+    "dist:mac": "electron-builder --mac dmg zip"
+  },
+  "build": {
+    "appId": "com.posturepulse.app",
+    "productName": "Posture Pulse",
+    "files": [
+      "index.html",
+      "manifest.json",
+      "sw.js",
+      "icon.svg",
+      "icon-192.png",
+      "icon-512.png",
+      "electron/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.healthcare-fitness",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "extendInfo": {
+        "NSCameraUsageDescription": "Posture Pulse uses your camera to detect posture while you use your Mac.",
+        "NSMicrophoneUsageDescription": "Posture Pulse does not record audio. This permission may be requested by the browser engine for media access."
+      }
+    }
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
+  }
+}
